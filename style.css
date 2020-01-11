@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css?family=Merriweather&display=swap');
+
+.sidebar {
+  height: 100%;
+  width: 50px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color:#003366;
+  overflow-x: hidden;
+}
+
+.sidebar a {
+  padding: 6px 8px 6px 14px;
+  text-decoration: none;
+  font-size: 20px;
+  color:lightgray;
+  display: block;
+   border: 1px solid white;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+  background-color:#003fa7;
+}
+
+
+
+/*other sidenavigation*/
+
+
+
+.sidenav {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color:lightgray;
+  overflow-x: hidden;
+  transition: 0.5s;
+  margin-left: 50px;
+  transition: .5s;
+}
+
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 15px;
+  color:#003366;
+  display: inline-block;
+  transition: 0.3s;
+  margin-top: 0px;
+  background-color:lightgray;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+  background-color: #003275;
+}
+
+.barbutton{
+  background-color:#003275;
+}
+
+.attriv{
+  background-color: #003275;
+  color: lightgray;
+}
+
+#main {
+  transition: margin-left .5s;
+  margin-left: 250px;
+}
+
+
+/*Media Queries*/
+
+
+
+/*Screen size for landscape tablet and mobile phones*/
+@media screen and (max-width: 1024px) {
+  
+
+  #main{
+    margin-left: 0px;
+  }
+
+
+  .notif, .messages, .buttonOpenCLose, .sidebar, .sidenav{
+    display: none;
+    margin-left: 0px;
+    width: 0;
+  }
+  
+}
+
+/*Screen size for mobile phones*/
+
+@media screen and (max-width: 480px) {
+
+  #main{
+    margin-left: 0px;
+  }
+
+
+  .notif, .messages, .buttonOpenCLose, .sidebar, .sidenav{
+    display: none;
+    margin-left: 0px;
+    width: 0;
+  }
+}
+
+body{
+  font-size: 14px;
+}

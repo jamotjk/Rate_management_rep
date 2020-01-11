@@ -1,0 +1,161 @@
+
+<?php
+include 'transaction1.php';
+ include 'db.connect.php'; ?>
+
+<style>
+	.tdd{
+		border:5px solid transparent;
+		
+	}.thh{
+		background-color:#006699;
+		color:white;
+		height: 2.5pc;
+	
+	
+	}td,th{
+	font-size: 14px;
+	}
+</style>
+<form method="POST" action="">
+	<div border="2">
+
+	<table width="95%" class="mt-4 ml-4">
+		<tr>
+			<td class="tdd">
+	<label class="mx-2">Tax no:</label>
+	<input type="text" name="tax_id" class="form-control ml-2">
+			</td>
+		<td  class="tdd">
+	<label class="mx-4">Tax name:</label>
+	<input  type="text" name="tax_name" class="form-control ml-2">
+			</td>	
+				<td class="tdd">
+	<label class="mx-4">Tax type:</label>
+	<input  type="text" name="tax_type" class="form-control ml-2">
+			</td>	
+				<td class="tdd">
+	<label class="mx-4">Tax Amount(%):</label>
+	<input  type="text" name="tax_amount" class="form-control ml-2">
+			</td class="tdd">
+	<td>
+	<input  style="margin-top: 2pc;width:6pc;margin-left:2pc; " type="submit" name="submit" class="btn btn-success" value="Save">
+			</td>
+	</table>
+	<hr>
+
+	<table class="ml-4">
+			</tr>
+			<tr>
+			<td class="tdd">
+	<label class="mx-2">Search:</label>
+	<input type="text" name="tax_search" class="form-control ml-2">
+			</td>		
+				<td class="tdd">
+		<input value="Search"  style="margin-top: 1.8pc;width:6pc;margin-left:2pc; " type="submit" name="search_tax" class="btn btn-primary">
+			</td>	
+				<td class="tdd">
+		<input value="View records"  style="margin-top: 1.8pc;width:7pc;margin-left:1pc; " type="submit" name="view_records" class="btn btn-info">
+			</td>	
+		</tr>
+	</table>
+</div>
+</form>
+<?php 
+
+//codes for inserting room type data
+
+if(isset($_POST["submit"])){
+	if(empty($_POST['tax_id']) || empty($_POST['tax_type']) || empty($_POST['tax_name'])|| empty($_POST['tax_amount'])){
+		echo '<script>alert("Action Failed")</script>';
+		echo '<script>window.location.href = " add_roomtax.php";</script>';
+	}else{
+
+	$result = mysqli_query($conn,"select * from room_tax_tbl where Tax_ID='$_POST[tax_id]' || Tax_name ='$_POST[tax_name]'");
+	$resultCheck = mysqli_num_rows($result);
+	if($resultCheck>0){
+	echo '<script>alert("The data that your trying to input is already existed")</script>';
+	echo '<script>window.location.href = " add_roomtax.php";</script>';
+	}
+	else{
+	mysqli_query($conn,"insert into room_tax_tbl(Tax_ID,Tax_name,Tax_type,Tax_amount) values('$_POST[tax_id]','$_POST[tax_name]','$_POST[tax_type]','$_POST[tax_amount]')");
+		echo '<script>alert("Successfully added")</script>';
+	echo '<script>window.location.href = " add_roomtax.php";</script>';
+		}
+	}
+}
+ ?>
+<br>
+	<table width='93%' style="margin-left:2.4pc; ">
+		<thead>
+		<tr>
+		<th class="thh">Tax no</th>
+		<th class="thh">Tax name</th>
+		<th class="thh">Tax type</th>
+		<th class="thh">Tax amount</th>
+		<th class="thh" ><center>Action</center></th>
+		</tr>
+		</thead>
+		<tbody>
+
+ <?php 
+
+//codes for search room tax
+if(isset($_POST["search_tax"])){
+	
+	$result = mysqli_query($conn,"select * from room_tax_tbl where Tax_ID='$_POST[tax_search]'");
+	$resultCheck = mysqli_num_rows($result);
+	if($resultCheck>0){
+	while($row=mysqli_fetch_assoc($result)){
+	
+		echo '<tr>';
+		echo '<td>'; echo $row["Tax_ID"] ; echo '</td>';
+		echo '<td>'; echo $row["Tax_name"] ; echo '</td>';
+		echo '<td>'; echo $row["Tax_type"] ; echo '</td>';
+		echo '<td>'; echo $row["Tax_amount"] ; echo '</td>';
+		?>
+
+		<td > <center><a href="delete_room_tax.php?Tax_ID=<?php echo $row['Tax_ID'];?>">delete<a><span> | </span>
+		<a  href="edit_update_roomtype.php?Tax_ID=<?php echo $row['Tax_ID'];?>">Edit<a></td>
+		</center>
+	</tr>
+
+			<?php
+			}
+		}else{
+			echo '<script>alert("Cant found")</script>';
+			echo '<script>window.location.href = " add_roomtax.php";</script>';
+		}
+}
+//codes for view records
+if(isset($_POST["view_records"])){
+	
+	$result = mysqli_query($conn,"select * from room_tax_tbl");
+	$resultCheck = mysqli_num_rows($result);
+	if($resultCheck>0){
+	while($row=mysqli_fetch_assoc($result)){
+	
+		echo '<tr>';
+		echo '<td>'; echo $row["Tax_ID"] ; echo '</td>';
+		echo '<td>'; echo $row["Tax_name"] ; echo '</td>';
+		echo '<td>'; echo $row["Tax_type"] ; echo '</td>';
+		echo '<td>'; echo $row["Tax_amount"] ; echo '</td>';
+		?>
+
+		<td > <center><a href="delete_room_tax.php?Tax_ID=<?php echo $row['Tax_ID'];?>">delete<a><span> | </span>
+		<a  href="edit_update_roomtax.php?Tax_ID=<?php echo $row['Tax_ID'];?>">Edit<a></td>
+		</center>
+	</tr>
+
+			<?php
+			}
+		}else{
+			echo '<script>alert("Cant found")</script>';
+			echo '<script>window.location.href = " add_roomtax.php";</script>';
+		}
+	}
+		
+
+  ?>
+</tbody>
+	</table>
