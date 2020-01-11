@@ -1,4 +1,4 @@
 <?php 
-$conn=mysqli_connect("db4free.net","jamotjk","11jamot11_");
+$conn=mysqli_connect("db4free.net:3306","jamotjk","11jamot");
 mysqli_select_db($conn,"rate_database");
  ?>
