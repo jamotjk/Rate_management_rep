@@ -6,9 +6,9 @@
 
 
 $conn = new mysqli("db4free.net", "jamotjk", "11jamot11_", "rate_database", 3306);
-if ($coon->connect_errno) {
+if ($conn->connect_errno) {
     echo "Failed to connect to MySQL: (" . $conn->connect_errno . ") " . $conn->connect_error;
 }
 
-echo $coon->host_info . "\n";
+echo $conn->host_info . "\n";
  ?>
