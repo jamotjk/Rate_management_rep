@@ -5,17 +5,20 @@
 
 
 
-$servername = "db4free.net";
-$username = "jamotjk";
+$username =  "jamotjk"; 
 $password = "11_jamot_11";
-$dbname="rate_database";
-// Create connection
-$conn = mysqli_connect($servername, $username, $password,$dbname);
+$host = "db4free.net:3306"; 
+$dbname = "rate_database";
 
-// Check connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-echo "Connected successfully";
+$options = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'); 
+
+try 
+{ 
+    $db = new PDO("mysql:host={$host};dbname={$dbname};charset=utf8", $username, $password, $options); 
+} 
+catch(PDOException $ex) 
+{ 
+    die("Failed to connect to the database: " . $ex->getMessage()); 
+} 
 
  ?>
