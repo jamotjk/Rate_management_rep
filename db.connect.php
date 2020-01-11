@@ -5,7 +5,7 @@
 
 
 
-$servername = "db4free.net:3306";
+$servername = "db4free.net";
 $username = "jamotjk";
 $password = "11_jamot_11";
 $dbname="rate_database";
