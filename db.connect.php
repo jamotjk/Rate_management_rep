@@ -7,7 +7,7 @@
 
 $servername = "db4free.net:3306";
 $username = "jamotjk";
-$password = "11jamot_11";
+$password = "11_jamot_11";
 $dbname="rate_database";
 // Create connection
 $conn = mysqli_connect($servername, $username, $password,$dbname);
